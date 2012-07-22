@@ -13,7 +13,7 @@ namespace BrightstarDB.Gedcom.Tests
     [TestClass]
     public class GedcomTests
     {
-        private const string DataFolder = "C:\\work\\github\\BrightstarDB.Gedcom\\Data\\";
+        private const string DataFolder = "C:\\work\\github\\Gedcom\\Data\\";
 
         [TestMethod]
         public void TestParser()
@@ -32,7 +32,7 @@ namespace BrightstarDB.Gedcom.Tests
 
             var ctx = new GedComContext("type=embedded;storesdirectory=c:\\brightstar;storename=" + storeId);
 
-            Assert.AreEqual(3, ctx.Indivduals.Count());
+            Assert.AreEqual(3, ctx.Individuals.Count());
             Assert.AreEqual(1, ctx.Families.Count());
 
             var family = ctx.Families.ToList()[0];
@@ -40,6 +40,7 @@ namespace BrightstarDB.Gedcom.Tests
             Assert.IsNotNull(family.Husband);
             Assert.AreEqual("1 JAN 1899", family.Husband.BirthEvent.Date);
             Assert.AreEqual("M", family.Husband.Sex);
+            Assert.AreEqual(family, family.Husband.SpouseFamilies().ToList()[0]);
 
             Assert.IsNotNull(family.Wife);
             Assert.AreEqual("1 JAN 1899", family.Wife.BirthEvent.Date);

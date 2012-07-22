@@ -24,7 +24,7 @@ namespace BrightstarDB.Gedcom
                 if (elem.Name.LocalName.Equals("INDI"))
                 {
                     var id = TryGetValue(elem, "id");
-                    var individual = ctx.Indivduals.Create();
+                    var individual = ctx.Individuals.Create();
                     if (id != null) lookups[id] = individual;
 
                     foreach (var elem1 in elem.Elements())
@@ -117,7 +117,7 @@ namespace BrightstarDB.Gedcom
                             var idref = TryGetValue(elem1, "idref");
                             if (idref != null)
                             {
-                                var husb = lookups[idref] as IIndivdual;
+                                var husb = lookups[idref] as IIndividual;
                                 if (husb != null) family.Husband = husb;
                             }
                         }
@@ -127,7 +127,7 @@ namespace BrightstarDB.Gedcom
                             var idref = TryGetValue(elem1, "idref");
                             if (idref != null)
                             {
-                                var wife = lookups[idref] as IIndivdual;
+                                var wife = lookups[idref] as IIndividual;
                                 if (wife != null) family.Wife = wife;
                             }
                         }
@@ -137,7 +137,7 @@ namespace BrightstarDB.Gedcom
                             var idref = TryGetValue(elem1, "idref");
                             if (idref != null)
                             {
-                                var child = lookups[idref] as IIndivdual;
+                                var child = lookups[idref] as IIndividual;
                                 if (child != null) family.Children.Add(child);
                             }
                         }

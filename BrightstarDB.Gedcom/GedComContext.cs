@@ -30,8 +30,8 @@ namespace BrightstarDB.Gedcom
     		TypeMappings.AddImplMapping<BrightstarDB.Gedcom.IDeathEvent, BrightstarDB.Gedcom.DeathEvent>();
     		provider.AddMappingsForType(TypeMappings, typeof(BrightstarDB.Gedcom.IFamily));
     		TypeMappings.AddImplMapping<BrightstarDB.Gedcom.IFamily, BrightstarDB.Gedcom.Family>();
-    		provider.AddMappingsForType(TypeMappings, typeof(BrightstarDB.Gedcom.IIndivdual));
-    		TypeMappings.AddImplMapping<BrightstarDB.Gedcom.IIndivdual, BrightstarDB.Gedcom.Indivdual>();
+    		provider.AddMappingsForType(TypeMappings, typeof(BrightstarDB.Gedcom.IIndividual));
+    		TypeMappings.AddImplMapping<BrightstarDB.Gedcom.IIndividual, BrightstarDB.Gedcom.Individual>();
     		provider.AddMappingsForType(TypeMappings, typeof(BrightstarDB.Gedcom.IMarriageEvent));
     		TypeMappings.AddImplMapping<BrightstarDB.Gedcom.IMarriageEvent, BrightstarDB.Gedcom.MarriageEvent>();
     	}
@@ -71,7 +71,7 @@ namespace BrightstarDB.Gedcom
     		BirthEvents = 	new BrightstarEntitySet<BrightstarDB.Gedcom.IBirthEvent>(this);
     		DeathEvents = 	new BrightstarEntitySet<BrightstarDB.Gedcom.IDeathEvent>(this);
     		Families = 	new BrightstarEntitySet<BrightstarDB.Gedcom.IFamily>(this);
-    		Indivduals = 	new BrightstarEntitySet<BrightstarDB.Gedcom.IIndivdual>(this);
+    		Individuals = 	new BrightstarEntitySet<BrightstarDB.Gedcom.IIndividual>(this);
     		MarriageEvents = 	new BrightstarEntitySet<BrightstarDB.Gedcom.IMarriageEvent>(this);
     	}
     	
@@ -90,7 +90,7 @@ namespace BrightstarDB.Gedcom
     		get; private set;
     	}
     	
-    	public IEntitySet<BrightstarDB.Gedcom.IIndivdual> Indivduals
+    	public IEntitySet<BrightstarDB.Gedcom.IIndividual> Individuals
     	{
     		get; private set;
     	}
@@ -160,20 +160,20 @@ namespace BrightstarDB.Gedcom
             set { SetRelatedObject<BrightstarDB.Gedcom.IMarriageEvent>("MarriageEvent", value); }
     	}
     
-    	public BrightstarDB.Gedcom.IIndivdual Husband
+    	public BrightstarDB.Gedcom.IIndividual Husband
     	{
-            get { return GetRelatedObject<BrightstarDB.Gedcom.IIndivdual>("Husband"); }
-            set { SetRelatedObject<BrightstarDB.Gedcom.IIndivdual>("Husband", value); }
+            get { return GetRelatedObject<BrightstarDB.Gedcom.IIndividual>("Husband"); }
+            set { SetRelatedObject<BrightstarDB.Gedcom.IIndividual>("Husband", value); }
     	}
     
-    	public BrightstarDB.Gedcom.IIndivdual Wife
+    	public BrightstarDB.Gedcom.IIndividual Wife
     	{
-            get { return GetRelatedObject<BrightstarDB.Gedcom.IIndivdual>("Wife"); }
-            set { SetRelatedObject<BrightstarDB.Gedcom.IIndivdual>("Wife", value); }
+            get { return GetRelatedObject<BrightstarDB.Gedcom.IIndividual>("Wife"); }
+            set { SetRelatedObject<BrightstarDB.Gedcom.IIndividual>("Wife", value); }
     	}
-    	public System.Collections.Generic.ICollection<BrightstarDB.Gedcom.IIndivdual> Children
+    	public System.Collections.Generic.ICollection<BrightstarDB.Gedcom.IIndividual> Children
     	{
-    		get { return GetRelatedObjects<BrightstarDB.Gedcom.IIndivdual>("Children"); }
+    		get { return GetRelatedObjects<BrightstarDB.Gedcom.IIndividual>("Children"); }
     		set { SetRelatedObjects("Children", value); }
     								}
     	#endregion
@@ -181,11 +181,12 @@ namespace BrightstarDB.Gedcom
 }
 namespace BrightstarDB.Gedcom 
 {
-    public partial class Indivdual : BrightstarEntityObject, IIndivdual 
+    public partial class Individual : BrightstarEntityObject, IIndividual 
     {
-    	public Indivdual(BrightstarEntityContext context, IDataObject dataObject) : base(context, dataObject) { }
-    	public Indivdual() : base() { }
-    	#region Implementation of BrightstarDB.Gedcom.IIndivdual
+    	public Individual(BrightstarEntityContext context, IDataObject dataObject) : base(context, dataObject) { }
+    	public Individual() : base() { }
+    	public System.String Id { get {return GetIdentity(); } set { SetIdentity(value); } }
+    	#region Implementation of BrightstarDB.Gedcom.IIndividual
     
     	public System.String Name
     	{

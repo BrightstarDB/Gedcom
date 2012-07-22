@@ -10,8 +10,8 @@ namespace BrightstarDB.Gedcom
     public interface IFamily
     {
         IMarriageEvent MarriageEvent { get; set; }
-        IIndivdual Husband { get; set; }
-        IIndivdual Wife { get; set; }
-        ICollection<IIndivdual> Children { get; set; }
+        IIndividual Husband { get; set; }
+        IIndividual Wife { get; set; }
+        ICollection<IIndividual> Children { get; set; }
     }
 }
